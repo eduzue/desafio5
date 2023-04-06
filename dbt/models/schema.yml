@@ -1,0 +1,162 @@
+version: 2
+
+models:
+  - name: vw_casos
+    description: casos pelo mundo
+    columns:
+      - name: chave
+        description: "Chave da tabela"
+        tests:
+          - unique
+          - not_null
+      - name: data
+        description: "Data da notificaçao dos casos pelo mundo"
+      - name: localizacao
+        description: "localizacao"
+      - name: casos
+        description: "Número de casos de covid, acumulado"
+      
+  - name: vw_casospm
+    description: "casos por milhão, acumulado"
+    columns:
+      - name: chave
+        description: "Chave da tabela"
+        tests:
+          - unique
+          - not_null
+      - name: data
+        description: "Data da notificação"
+      - name: localizacao
+        description: "localizacao"
+      - name: casos
+        description: "Número de casos de covid"
+
+
+  - name: vw_vacinacao
+    description: "Informações da vacinação por data e localização"
+    columns:
+      - name: chave
+        description: "Chave da tabela"
+        tests:
+          - unique
+          - not_null
+      - name: iso_code
+        description: "Código da localização"
+      - name: data
+        description: "data da notificação"
+      - name: total_vaccinations
+        description: "total de vacinação na data"
+      - name: people_vaccinated
+        description: "pessoas vacinadas na data"
+      - name: people_fully_vaccinated
+        description: "total de pessoas totalmente vacinadas na data"
+      - name: total_boosters
+        description: "total de reforços de vacinação"
+      - name: daily_vaccinations_raw
+        description: "Vacinação no dia"
+      - name: daily_vaccinations
+        description: "Vacinação no dia"
+      - name: total_vaccinations_per_hundred
+        description: "total de Vacinação por 100 pessoas"
+      - name: people_vaccinated_per_hundred
+        description: "Vacinação por 100 pessoas"
+      - name: people_fully_vaccinated_per_hundred
+        description: "Pessoas totalmente vacinadas por 100 pessoas"
+      - name: daily_vaccinations_per_million
+        description: "Vacinação diária por milhão"
+      - name: daily_people_vaccinated
+        description: "Número diário de pessoas vacinadas"
+      - name: daily_people_vaccinated_per_hundred
+        description: "Pessoas vacinadas diariamente por 100 pessoas"
+   
+
+  - name: casos_silver
+    description: "Tabela modificada, para unir as tabelas casos e casos por milhão"
+    columns:
+      - name: data_casos
+        description: "casos diários por locallização"
+      - name: local_casos
+        description: "Localização"
+      - name: total_casos
+        description: "Total de casos acumulados por localização"
+      - name: total_casos_pm
+        description: "Total de casos acumulados por milhão, por localização"
+
+  - name: vw_mortes
+    description: "Tabela que mostra as notificações de mortes por localização e data"
+    columns:
+      - name: chave
+        description: "Chave da tabela"
+        tests:
+          - unique
+          - not_null
+      - name: data
+        description: "Data da notificação"
+      - name: location
+        description: "Localização"
+      - name: new_cases
+        description: "Novos casos diários"
+      - name: new_deaths
+        description: "Novas mortes diárias"
+      - name: total_cases
+        description: "Total de casos acumulados"
+      - name: total_deaths
+        description: "Total de mortes acumulado por localização, na data"
+      - name: weekly_cases
+        description: "Casos semanais, acumulado na semana"
+      - name: weekly_deaths
+        description: "Casos de mortes semanais, acumulado na semana"
+      - name: biweekly_cases
+        description: "Casos semanais, acumulado na semana"
+      - name: biweekly_deaths
+        description: "Casos semanais, acumulado na semana"
+
+
+  - name: total_owid
+    description: "Compilação de todas as tabelas: mortes, vacinação e casos acumulados e diários"
+    columns:
+      - name: data_casos
+        description: "Data dos casos"
+      - name: data_vacinacao
+        description: "data da estatistica de vacinacao"
+      - name: data_mortes
+        description: "data da estatítstica de mortes"
+      - name: data
+        description: "data compilada das 3 tabelas: casos, vacinacao e mortes"
+      - name: local_casos
+        description: "Localização da tabela casos"
+      - name: local_mortes
+        description: "Localização da tabela vw_mortes"
+      - name: local
+        description: "Localização compilada da tabela casos e tabela mortes"
+      - name: total_casos
+        description: "totalização acumulada de casos na data e localização"
+      - name: total_casos_pm
+        description: "total de casos por milhão, acumulado"
+      - name: total_vacinacao
+        description: "total de vacinação, acumulado"
+      - name: diaria_vacinacao
+        description: "número diário de vacinação"
+      - name: diaria_por_m_vacinacao
+        description: "Vacinação diária por milhão"
+      - name: pessoas_total_vacinadas
+        description: "Vacinação total acumulada por localidade"
+      - name: mortes_novas
+        description: "Mortes ao dia por localidade"
+      - name: total_mortes
+        description: "Acumulado de mortes na localidade"
+
+
+  - name: total_ml
+    description: "Compilação da tabela total.owid para ML"
+    columns:
+      - name: data
+        description: "Data dos casos"
+      - name: local
+        description: "data da estatistica de vacinacao"
+      - name: diaria_casos
+        description: "casos novos no dia"
+      - name: diaria_vacinacao
+        description: "quantidade da notificação de vacinação da data"
+      - name: mortes_novas
+        description: "mortes novas por localização na data"

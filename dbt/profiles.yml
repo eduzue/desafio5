@@ -1,0 +1,27 @@
+config:
+  send_anonymous_usage_stats: false
+  use_colors: true
+  partial_parse: true
+  printer_width: 10
+  write_json: true
+  warn_error: true
+  #warn_error_options: all
+  log_format: text
+  debug: true
+  version_check: false
+  fail_fast: false
+  use_experimental_parser: false
+  static_parser: true
+
+covid:
+  target: dev
+  outputs:
+    dev:                      # specify the dev connection
+      type: redshift
+      threads: 1
+      host: "redshift-cluster-1.cibczfddbdrt.us-east-1.redshift.amazonaws.com"
+      port: 5439
+      user: awsuser
+      pass: 61A8!j(5Wq
+      dbname: dev
+      schema: covid    # use the dev schema
