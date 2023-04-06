@@ -10,3 +10,6 @@
 #Pasta dbt:
 - scripts de modelos dos dados
 - schema dos dados, onde contém as validações dos modelos de dados, assim como a descrição das tabelas e campos.
+
+#Terraform
+- scripts para a criação dos serviços na aws.
